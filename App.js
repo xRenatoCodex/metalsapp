@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import Main from './src/Main';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import NewTakeFoto from './src/NewTakeFoto'
+import CameraFoto from './src/CameraFoto'
+
+
+
+
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Camera" screenOptions={{animation:'flip'}}>
+        <Stack.Screen name="Home" component={Main} options={{ headerShown: false }} />
+        <Stack.Screen name="NFile" component={NewTakeFoto} options={{ headerShown: false }} />
+        <Stack.Screen name="Camera" component={CameraFoto} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
